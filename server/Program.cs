@@ -27,6 +27,7 @@ app.UseStaticFiles();
 
 app.MapHub<ViewHub>("/hubs/View"); // Registrar el hub directamente en el nivel superior
 app.MapHub<StringToolsHub>("/hubs/stringtools");
+app.MapHub<ColorHub>("/hubs/color");
 
 app.Run();
 
