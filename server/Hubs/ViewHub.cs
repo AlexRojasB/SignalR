@@ -14,5 +14,4 @@ public class ViewHub : Hub
         ViewCount--;
         await Clients.All.SendAsync("viewCountUpdate", ViewCount);
     }
-    
 }
