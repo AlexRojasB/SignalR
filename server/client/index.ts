@@ -22,6 +22,18 @@ let colorConnection = new signalR.HubConnectionBuilder()
 .withUrl("/hubs/color")
 .build();
 
+colorConnection.onreconnected((connectionId: string | undefined) => {
+    console.log(connectionId);
+});
+
+colorConnection.onreconnecting((error?: Error) => {
+    console.log(error);
+});
+
+colorConnection.onclose((error?: Error) => {
+    console.log(error);
+});
+
 button?.addEventListener("click", function(evt) {
     var firstname = (document.getElementById("inputFirstName") as HTMLInputElement).value;
     var lastname = (document.getElementById("inputLastName") as HTMLInputElement).value;
@@ -47,15 +59,9 @@ colorConnection.on("triggerColor", (color) => {
     document.getElementsByTagName("body")[0].style.backgroundColor = color;
 });
 
-// notify server we're watching
-function notify() {
-    viewConnection.send("notifyWatching");
-}
-
 // start connection
 function startSuccess() {
     console.log("Connected.");
-    notify();
 }
 
 function startFail() {
