@@ -1,4 +1,5 @@
 import * as signalR from "@microsoft/signalr";
+import { MessagePackHubProtocol } from '@microsoft/signalr-protocol-msgpack';
 
 var counter = document.getElementById("viewCounter");
 var button = document.getElementById("btnGetFullName");
@@ -15,6 +16,7 @@ let viewConnection = new signalR.HubConnectionBuilder()
 .build();
 
 let stringConnection = new signalR.HubConnectionBuilder()
+.withHubProtocol(new MessagePackHubProtocol())
 .withUrl("/hubs/stringtools")
 .build();
 
